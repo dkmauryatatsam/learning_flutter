@@ -14,9 +14,8 @@ class NewsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 3),
+      margin: const EdgeInsets.only(bottom: 3),
       color: Colors.black,
-      height: MediaQuery.of(context).size.height / 3,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -33,22 +32,22 @@ class NewsCard extends StatelessWidget {
                         : imageUrl,
                     fit: BoxFit.cover,
                     height: 150,
-                    width: 100,
+                    width: 140,
                   ),
                 ),
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Container(
-                      padding: EdgeInsets.only(top: 20),
-                      width: MediaQuery.of(context).size.width / 1.8,
+                  SizedBox(
+                      width: MediaQuery.of(context).size.width / 2,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             publishedAt,
-                            style: TextStyle(color: Colors.grey, fontSize: 11),
+                            style: const TextStyle(
+                                color: Colors.grey, fontSize: 11),
                           ),
                           Icon(
                             Icons.more_horiz,
@@ -56,45 +55,14 @@ class NewsCard extends StatelessWidget {
                           )
                         ],
                       )),
-                  Container(
-                    width: MediaQuery.of(context).size.width / 1.8,
-                    height: MediaQuery.of(context).size.height / 6,
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 2,
                     child: Text(title,
                         style: GoogleFonts.poppins(
                             color: Colors.white,
                             fontSize: 14,
                             fontWeight: FontWeight.w300)),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                        top: 1, left: MediaQuery.of(context).size.width / 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.share,
-                              color: Colors.pink,
-                            )),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        MaterialButton(
-                          color: Colors.pink,
-                          onPressed: () {},
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 5, vertical: 7),
-                            child: Text(
-                              "See more",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  )
                 ],
               )
             ],

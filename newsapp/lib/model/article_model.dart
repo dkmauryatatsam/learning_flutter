@@ -17,12 +17,12 @@ class Article {
       required this.content});
   factory Article.fromJson(Map<String, dynamic> json) {
     return Article(
-        title: json['title'] == null ? "" : json['title'],
-        description: json['description'] == null ? "" : json['description'],
-        url: json['url'] == null ? "" : json['url'],
-        urlToImage: json['urlToImage'] == null ? "" : json['urlToImage'],
-        publishedAt: json['publishedAt'] == null ? "" : json['publishedAt'],
-        content: json['content'] == null ? "" : json['content'],
-        author: json['author'] == null ? "" : json['author']);
+        title: json['title'] ?? "",
+        description: json['description'] ?? "",
+        url: json['url'] ?? "",
+        urlToImage: json['urlToImage'] ?? "",
+        publishedAt: json['publishedAt'] ?? "",
+        content: json['content'] ?? "",
+        author: json['author'] ?? "");
   }
 }

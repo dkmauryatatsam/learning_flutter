@@ -2,10 +2,13 @@ import 'package:get/get.dart';
 import 'package:newsapp/model/article_model.dart';
 import 'package:newsapp/services/api_service.dart';
 
+enum PageState { initial, loaded, error, loading }
+
 class NewsController extends GetxController {
-  var newsList = <Article>[].obs;
-  var isLoading = true.obs;
-  ApiService apiService = ApiService();
+  final RxList<Article> _articles = RxList([]);
+  List<Article> get articles => _articles;
+  Rx<PageState> state = Rx(PageState.initial);
+  final ApiService apiService = Get.find();
 
   @override
   void onInit() {
@@ -14,16 +17,13 @@ class NewsController extends GetxController {
   }
 
   void fetchArticle() async {
+    state(PageState.loading);
     try {
-      isLoading(true);
       final article = await apiService.getArticle();
-      if (article != null) {
-        newsList.value = article;
-      }
+      _articles.value = article;
+      state(PageState.loaded);
     } catch (e) {
-      print(e);
-    } finally {
-      isLoading(false);
+      state(PageState.error);
     }
   }
 }
